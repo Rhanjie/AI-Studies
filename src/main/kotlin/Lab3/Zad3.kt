@@ -142,7 +142,7 @@ fun getEmptyFieldsAmount(chessboard: IntArray, nextMove: NextMove): Int {
 }
 
 fun main(args: Array<String>) {
-    println("Marcin Dyla - Lab2 - Problem skoczka szachowego z heurystyką\n")
+    println("Marcin Dyla - Lab3 - Problem skoczka szachowego z heurystyką\n")
 
     print("Podaj parzysta wielkosc szachownicy: ")
     val scanner = Scanner(System.`in`)
