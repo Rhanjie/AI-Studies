@@ -1,5 +1,90 @@
 package Lab5
 
+import java.util.*
+import kotlin.system.exitProcess
+
+var size = 8
+var attempt = 1
+
+private fun prepareChessboard(chessboard: Array<CharArray>) {
+    for (i in 0 until size) {
+        Arrays.fill(chessboard[i], '–')
+    }
+}
+
+private fun checkCollisions(chessboard: Array<CharArray>, row: Int, column: Int): Boolean {
+    //First condition
+    for (i in 0 until row) {
+        if (chessboard[i][column] == '#') {
+            return false
+        }
+    }
+
+    //Second condition
+    var i = row
+    var j = column
+    while (i >= 0 && j >= 0) {
+        if (chessboard[i][j] == '#') {
+            return false
+        }
+
+        i -= 1
+        j -= 1
+    }
+
+    //Third condition
+    i = row
+    j = column
+    while (i >= 0 && j < size) {
+        if (chessboard[i][j] == '#') {
+            return false
+        }
+
+        i -= 1
+        j += 1
+    }
+
+    return true
+}
+
+private fun renderChessboard(chessboard: Array<CharArray>) {
+    println("[ROZWIAZANIE NUMER ${attempt++}]")
+
+    for (y in 0 until size) {
+        for (x in 0 until size) {
+            print("|${chessboard[y][x]}| ")
+        }
+
+        println()
+    }
+    println()
+}
+
+private fun hetmani(chessboard: Array<CharArray>, row: Int) {
+    if (row == size) {
+        renderChessboard(chessboard)
+
+        return
+    }
+
+    for (column in 0 until size) {
+        if (checkCollisions(chessboard, row, column)) {
+            chessboard[row][column] = '#'
+            hetmani(chessboard, row + 1)
+            chessboard[row][column] = '–'
+        }
+    }
+}
+
 fun main(args: Array<String>) {
-    println("Lab 5!")
+    println("Marcin Dyla - Lab5 - Problem ośmiu hetmanów c.d.\n")
+
+    print("Podaj rozmiar szachownicy: ")
+    val text = readLine()
+    size = text!!.toInt()
+
+    val chessboard = Array(size) { CharArray(size) }
+
+    prepareChessboard(chessboard);
+    hetmani(chessboard, 0)
 }
