@@ -1,11 +1,11 @@
 package Lab6
 
 class State(
-    private val waitingMissionaries: Int,
     private val waitingCannibals: Int,
+    private val waitingMissionaries: Int,
     private val boatPosition: Direction,
-    private var transportedMissionaries: Int = 0,
-    private var transportedCannibals: Int = 0
+    private var transportedCannibals: Int = 0,
+    private var transportedMissionaries: Int = 0
 ) {
 
     enum class Direction { LEFT, RIGHT }
