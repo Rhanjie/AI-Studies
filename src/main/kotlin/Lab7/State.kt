@@ -53,17 +53,19 @@ class State(
         return combinations
     }
 
-    private fun combinationRepetition(arr: IntArray, n: Int, r: Int): List<List<Int>> {
+    private fun combinationRepetition(arr: IntArray, r: Int): List<List<Int>> {
         val chosen = IntArray(r + 1)
         val combinations = arrayListOf<ArrayList<Int>>();
 
-        return combinationRepetitionUtil(combinations, chosen, arr, 0, r, 0, n - 1)
+        return combinationRepetitionUtil(combinations, chosen, arr, 0, r, 0, arr.size - 1)
     }
 
     fun checkPossibleMoves(): List<State> {
         val possibleMoves: MutableList<State> = ArrayList()
 
-        val moves = combinationRepetition(intArrayOf(0, 1, 2), 3, numberOfSeats)
+        //0 - puste miejsce, 1 - misjonarz, 2 - kanibal
+        val types = intArrayOf(0, 1, 2)
+        val moves = combinationRepetition(types, numberOfSeats)
         for (move in moves) {
             val movedMissionaries = move.count { it == 1 }
             val movedCannibals = move.count { it == 2 }
