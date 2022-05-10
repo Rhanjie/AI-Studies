@@ -82,7 +82,7 @@ fun main(args: Array<String>) {
 
     println("")
 
-    val startState = State(numberOfMissionaries, numberOfCannibals, numberOfSeats, State.Direction.LEFT, 0, 0)
+    val startState = State(numberOfCannibals, numberOfMissionaries, numberOfSeats, State.Direction.LEFT, 0, 0)
     val solution: State? = bfsAlgorithm(startState)
 
     displaySolution(solution)

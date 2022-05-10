@@ -2,12 +2,12 @@ package Lab7
 
 
 class State(
-    private val waitingMissionaries: Int,
     private val waitingCannibals: Int,
+    private val waitingMissionaries: Int,
     private val numberOfSeats: Int,
     private val boatPosition: Direction,
-    private var transportedMissionaries: Int = 0,
-    private var transportedCannibals: Int = 0
+    private var transportedCannibals: Int = 0,
+    private var transportedMissionaries: Int = 0
 ) {
 
     enum class Direction { LEFT, RIGHT }
@@ -67,6 +67,9 @@ class State(
         for (move in moves) {
             val movedMissionaries = move.count { it == 1 }
             val movedCannibals = move.count { it == 2 }
+
+            if (movedMissionaries == 0 && movedCannibals == 0)
+                continue
 
             var multiplierForDirection = 1
             var direction = Direction.RIGHT
